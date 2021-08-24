@@ -1,6 +1,7 @@
 var canvas, backgroundImage;
 
 var gameState = 0;
+var canAlert = false
 var playerCount;
 var allPlayers;
 var distance = 0;
@@ -8,7 +9,7 @@ var database;
 
 var form, player, game;
 
-var cars, car1, car2, car3, car4;
+var cars, car1, car2, car3, car4, indicator;
 
 var track, car1_img, car2_img, car3_img, car4_img;
 
@@ -31,12 +32,17 @@ function setup(){
 
 
 function draw(){
+  if (gameState === 0 && canAlert === true){
+    canAlert = false
+    alert("A player has won. Reload to replay!")
+  }
   if(playerCount === 4){
     game.update(1);
   }
   if(gameState === 1){
     clear();
     game.play();
+    canAlert = true
   }
   if(gameState === 2){
     game.end();

@@ -37,6 +37,7 @@ class Game {
     car3.addImage("car3",car3_img);
     car4 = createSprite(700,200);
     car4.addImage("car4",car4_img);
+    indicator = createSprite(0,0, 50, 100)
     cars = [car1, car2, car3, car4];
   }
 
@@ -71,12 +72,18 @@ class Game {
 
         if (index === player.index){
           cars[index - 1].shapeColor = "red";
+          indicator.shapeColor = "red"
+          indicator.x = cars[index-1].x
+          indicator.y = cars[index-1].y
+          indicator.depth = cars[index-1].depth - 1
           camera.position.x = displayWidth/2;
           camera.position.y = cars[index-1].y;
         }
        
-        //textSize(15);
+        textSize(15);
+        fill("yellow")
         //text(allPlayers[plr].name + ": " + allPlayers[plr].distance, 120,display_position)
+        text(3860- allPlayers[plr].distance + " feet left!", displayWidth/2, cars[index-1].y+100)
       }
 
     }
